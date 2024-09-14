@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import './SignUp.css'; // Import the new CSS file
+import React, { useState } from "react";
+import "./SignUp.css"; // Import the new CSS file
 
 const SignUp = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [generalError, setGeneralError] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [generalError, setGeneralError] = useState("");
 
   const checkEmailAvailability = async (email) => {
     try {
-      const response = await fetch('/check-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/check-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
       const data = await response.json();
       if (response.ok) {
-        setEmailError(''); // Clear the error if email is available
+        setEmailError(""); // Clear the error if email is available
       } else {
         setEmailError(data.message); // Display error if email is taken
       }
     } catch (error) {
-      setEmailError('Error checking email availability');
+      setEmailError("Error checking email availability");
     }
   };
 
@@ -36,15 +36,15 @@ const SignUp = () => {
 
     // Check if email has error before submitting
     if (emailError) {
-      setGeneralError('Please fix the errors before submitting.');
+      setGeneralError("Please fix the errors before submitting.");
       return;
     }
 
     try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
+      const response = await fetch("/api/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, email, password }), // Send user details as JSON
       });
@@ -53,16 +53,16 @@ const SignUp = () => {
 
       if (response.ok) {
         // Handle successful signup
-        console.log('Signup successful');
+        console.log("Signup successful");
         // You can redirect or show success message here
         // Example: window.location.href = '/login';
       } else {
         // Display error from response
-        setGeneralError(data.message || 'Failed to sign up. Please try again.');
+        setGeneralError(data.message || "Failed to sign up. Please try again.");
       }
     } catch (err) {
       // Handle network or other errors
-      setGeneralError('An error occurred. Please try again later.');
+      setGeneralError("An error occurred. Please try again later.");
     }
   };
 
@@ -72,8 +72,16 @@ const SignUp = () => {
         <h2 className="left-heading">HappyLearning</h2>
         <p className="institute-name">Get Codified with our New Features!</p>
         <div className="additional-content">
-          <p>Welcome to HappyLearning, where innovation meets education. Explore our latest features and join a community of learners dedicated to achieving excellence.</p>
-          <p>Discover new courses, track your progress, and enjoy personalized learning experiences tailored to your needs. Let us help you achieve your career goals!</p>
+          <p>
+            Welcome to HappyLearning, where innovation meets education. Explore
+            our latest features and join a community of learners dedicated to
+            achieving excellence.
+          </p>
+          <p>
+            Discover new courses, track your progress, and enjoy personalized
+            learning experiences tailored to your needs. Let us help you achieve
+            your career goals!
+          </p>
         </div>
       </div>
       <div className="right-form">
@@ -114,10 +122,14 @@ const SignUp = () => {
             />
           </div>
           {generalError && <p className="error-text">{generalError}</p>}
-          <button type="submit" className="btn btn-primary">Sign Up</button>
+          <button type="submit" className="btn btn-primary">
+            Sign Up
+          </button>
         </form>
         <div className="mt-3">
-          <p>Already have an account? <a href="/login">Log In</a></p>
+          <p>
+            Already have an account? <a href="/login">Log In</a>
+          </p>
         </div>
       </div>
     </div>

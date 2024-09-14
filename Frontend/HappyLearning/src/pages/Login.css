@@ -4,8 +4,9 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  font-family: 'Arial', sans-serif;
-  background: url('https://img.freepik.com/free-photo/office-desk-table-with-pencils-supplies_155003-5657.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid') no-repeat center center fixed;
+  font-family: "Arial", sans-serif;
+  background: url("https://img.freepik.com/free-photo/office-desk-table-with-pencils-supplies_155003-5657.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid")
+    no-repeat center center fixed;
   background-size: cover;
   padding: 0 80px;
   margin-top: 30px;
