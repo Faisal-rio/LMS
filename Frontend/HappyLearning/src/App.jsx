@@ -2,8 +2,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useLocation,
-} from "react-router-dom";
+  useLocation,} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer"; // Import the Footer component
