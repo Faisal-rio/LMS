@@ -1,39 +1,36 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import "./Login.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link for navigation
+import './Login.css'; // Import the CSS file
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
+    setMessage(''); // Clear previous messages
 
     try {
-      // Send a POST request to the login API with email and password
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }), // Send email and password as JSON
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password
       });
 
-      const data = await response.json(); // Parse the JSON response
-
-      if (response.ok) {
-        // If login is successful
-        console.log("Login successful");
-        // Redirect user or store token/session details as necessary
-        // Example: localStorage.setItem('token', data.token);
-      } else {
-        // If login fails, set the error message
-        setError(data.message || "Invalid credentials. Please try again.");
+      if (response.status === 200) {
+        // Handle successful login, e.g., store the JWT in localStorage
+        localStorage.setItem('token', response.data.token);
+        setMessage('Login successful!');
+        // Redirect to a different page or update UI
+        // You can use `history.push` or `navigate` from react-router-dom if needed
       }
-    } catch (err) {
-      // Catch any network errors
-      setError("An error occurred. Please try again later.");
+    } catch (error) {
+      if (error.response) {
+        setMessage(error.response.data.message); // Error message from backend
+      } else {
+        setMessage('Error logging in');
+      }
     }
   };
 
@@ -59,11 +56,11 @@ const Login = () => {
         <h2>Welcome to HappyLearning!</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email">Email or Username</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
-              placeholder="Enter your email or username"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -80,7 +77,7 @@ const Login = () => {
               required
             />
           </div>
-          {error && <p className="error-message">{error}</p>}
+          {message && <p className="message-text">{message}</p>}
           <div className="mb-3 form-check">
             <input
               type="checkbox"
@@ -96,7 +93,6 @@ const Login = () => {
           </button>
         </form>
         <div className="mt-3">
-          {/* Use Link for navigation to avoid full page reloads */}
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
         <div className="mt-3">

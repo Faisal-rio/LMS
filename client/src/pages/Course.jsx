@@ -9,184 +9,29 @@ const debounce = (func, wait) => {
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
 };
-
 const courses = [
-  {
-    title: "Full Stack Web Developer",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "10000",
-    image:
-      "https://media.istockphoto.com/id/871030872/photo/programming-code-abstract-technology-background-of-software-developer.jpg?s=612x612&w=0&k=20&c=lkfUNy8Sf3TpFBeIfpBAy6FB5XQwbwjdzypK_1uOQd8=",
-  },
-  {
-    title: "Data Scientist & Machine Learning",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "12000",
-    image:
-      "https://img.freepik.com/free-photo/programming-background-collage_23-2149901779.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Python",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "8000",
-    image:
-      "https://img.freepik.com/premium-photo/programmer-with-3d-computer-yellow-code_124008-63.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "JavaScript",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "7000",
-    image:
-      "https://img.freepik.com/premium-photo/javascript-programming-code-abstract-technology-background_272306-155.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Java",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "10000",
-    image:
-      "https://img.freepik.com/premium-photo/composition-with-html-system-websites_23-2150866280.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Blockchain & Cryptocurrency",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "15000",
-    image:
-      "https://img.freepik.com/free-photo/3d-cryptocurrency-rendering-design_23-2149074563.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Cybersecurity Fundamentals",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "11000",
-    image:
-      "https://img.freepik.com/free-photo/business-security_53876-101271.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Digital Marketing",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "9000",
-    image:
-      "https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Cloud Computing with AWS",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "13000",
-    image:
-      "https://img.freepik.com/premium-photo/cloud-computing-power-enhance-cloud-strategy-business-eide_31965-547154.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Artificial Intelligence & Deep Learning",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "14000",
-    image:
-      "https://img.freepik.com/premium-photo/futuristic-robot-artificial-intelligence-concept_31965-6351.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Git",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "6000",
-    image:
-      "https://img.freepik.com/free-photo/clock-laptop-with-copy-space_23-2148313051.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "TypeScript",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "7000",
-    image:
-      "https://img.freepik.com/free-photo/programming-background-collage_23-2149901771.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "ChatGPT",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "8000",
-    image:
-      "https://img.freepik.com/premium-photo/human-interact-with-ai-artificial-intelligence-virtual-assistant-faas_31965-552529.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "UI/UX Designer",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "12000",
-    image:
-      "https://img.freepik.com/free-photo/representations-user-experience-interface-design_23-2150104516.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Flutter",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "10000",
-    image:
-      "https://img.freepik.com/premium-photo/software-developer-work-with-coding-overlays-programming-languages-eide_31965-479462.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "SQL for Data Analysis",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "7500",
-    image:
-      "https://cdn.pixabay.com/photo/2024/03/22/12/49/ai-generated-8649646_640.jpg",
-  },
-  {
-    title: "DevOps Fundamentals",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "12000",
-    image:
-      "https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?t=st=1726319959~exp=1726323559~hmac=87f1ba6702b71945d1e14a403b2bc63886b931abd4e473a49f09d3830a3e006d&w=826",
-  },
-  {
-    title: "Agile Project Management",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "7000",
-    image:
-      "https://img.freepik.com/free-photo/html-css-collage-concept-with-person_23-2150062008.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Mobile App Development with React Native",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "11000",
-    image:
-      "https://img.freepik.com/premium-photo/computer-programmer-coding-laptop-with-ai-data-science-futuristic-tech-background_251376-5627.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Game Development with Unity",
-    duration: "6 months",
-    languages: "English, Tamil",
-    price: "13000",
-    image:
-      "https://t3.ftcdn.net/jpg/07/89/02/58/240_F_789025827_W3sEfLXwWjF6yOCGZzWfXd6dgRwdikhZ.jpg",
-  },
-  {
-    title: "Introduction to Big Data",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "8000",
-    image:
-      "https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010117.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid",
-  },
-  {
-    title: "Network Security Basics",
-    duration: "3 months",
-    languages: "English, Tamil",
-    price: "7000",
-    image:
-      "https://cdn.pixabay.com/photo/2024/05/21/19/58/code-8779051_640.jpg",
-  },
+  { title: "Full Stack Web Developer", duration: "6 months", languages: "English, Tamil", price: "10000", image: "https://media.istockphoto.com/id/871030872/photo/programming-code-abstract-technology-background-of-software-developer.jpg?s=612x612&w=0&k=20&c=lkfUNy8Sf3TpFBeIfpBAy6FB5XQwbwjdzypK_1uOQd8=" },
+  { title: "Data Scientist & Machine Learning", duration: "6 months", languages: "English, Tamil", price: "12000", image: "https://img.freepik.com/free-photo/programming-background-collage_23-2149901779.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Python", duration: "3 months", languages: "English, Tamil", price: "8000", image: "https://img.freepik.com/premium-photo/programmer-with-3d-computer-yellow-code_124008-63.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "JavaScript", duration: "3 months", languages: "English, Tamil", price: "7000", image: "https://img.freepik.com/premium-photo/javascript-programming-code-abstract-technology-background_272306-155.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Java", duration: "6 months", languages: "English, Tamil", price: "10000", image: "https://img.freepik.com/premium-photo/composition-with-html-system-websites_23-2150866280.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Blockchain & Cryptocurrency", duration: "6 months", languages: "English, Tamil", price: "15000", image: "https://img.freepik.com/free-photo/3d-cryptocurrency-rendering-design_23-2149074563.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Cybersecurity Fundamentals", duration: "6 months", languages: "English, Tamil", price: "11000", image: "https://img.freepik.com/free-photo/business-security_53876-101271.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Digital Marketing", duration: "3 months", languages: "English, Tamil", price: "9000", image: "https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Cloud Computing with AWS", duration: "6 months", languages: "English, Tamil", price: "13000", image: "https://img.freepik.com/premium-photo/cloud-computing-power-enhance-cloud-strategy-business-eide_31965-547154.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Artificial Intelligence & Deep Learning", duration: "6 months", languages: "English, Tamil", price: "14000", image: "https://img.freepik.com/premium-photo/futuristic-robot-artificial-intelligence-concept_31965-6351.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Git", duration: "3 months", languages: "English, Tamil", price: "6000", image: "https://img.freepik.com/free-photo/clock-laptop-with-copy-space_23-2148313051.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "TypeScript", duration: "3 months", languages: "English, Tamil", price: "7000", image: "https://img.freepik.com/free-photo/programming-background-collage_23-2149901771.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "ChatGPT", duration: "3 months", languages: "English, Tamil", price: "8000", image: "https://img.freepik.com/premium-photo/human-interact-with-ai-artificial-intelligence-virtual-assistant-faas_31965-552529.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "UI/UX Designer", duration: "6 months", languages: "English, Tamil", price: "12000", image: "https://img.freepik.com/free-photo/representations-user-experience-interface-design_23-2150104516.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Flutter", duration: "6 months", languages: "English, Tamil", price: "10000", image: "https://img.freepik.com/premium-photo/software-developer-work-with-coding-overlays-programming-languages-eide_31965-479462.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "SQL for Data Analysis", duration: "3 months", languages: "English, Tamil", price: "7500", image: "https://cdn.pixabay.com/photo/2024/03/22/12/49/ai-generated-8649646_640.jpg" },
+  { title: "DevOps Fundamentals", duration: "6 months", languages: "English, Tamil", price: "12000", image: "https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?t=st=1726319959~exp=1726323559~hmac=87f1ba6702b71945d1e14a403b2bc63886b931abd4e473a49f09d3830a3e006d&w=826" },
+  { title: "Agile Project Management", duration: "3 months", languages: "English, Tamil", price: "7000", image: "https://img.freepik.com/free-photo/html-css-collage-concept-with-person_23-2150062008.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Mobile App Development with React Native", duration: "6 months", languages: "English, Tamil", price: "11000", image: "https://img.freepik.com/premium-photo/computer-programmer-coding-laptop-with-ai-data-science-futuristic-tech-background_251376-5627.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Game Development with Unity", duration: "6 months", languages: "English, Tamil", price: "13000", image: "https://t3.ftcdn.net/jpg/07/89/02/58/240_F_789025827_W3sEfLXwWjF6yOCGZzWfXd6dgRwdikhZ.jpg" },
+  { title: "Introduction to Big Data", duration: "3 months", languages: "English, Tamil", price: "8000", image: "https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010117.jpg?uid=R159796910&ga=GA1.1.100659340.1722111475&semt=ais_hybrid" },
+  { title: "Network Security Basics", duration: "3 months", languages: "English, Tamil", price: "7000", image: "https://cdn.pixabay.com/photo/2024/05/21/19/58/code-8779051_640.jpg" }
 ];
 
 const Course = () => {
