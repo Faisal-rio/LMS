@@ -2,54 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './PasswordReset.css'; // Ensure you have the appropriate CSS
 
-const handlePasswordReset = async (step, email, otp, newPassword) => {
-  try {
-    if (step === 1) {
-      // Step 1: Send email for password reset
-      await axios.post('http://localhost:5000/api/auth/forgot-password', { email });
-      console.log('Email sent to:', email);
-      return { success: true, message: 'Email sent successfully. Please check your inbox.' };
-    } else if (step === 2) {
-      // Step 2: Verify OTP
-      const response = await axios.post('http://localhost:5000/api/auth/verify-otp', { otp, email });
-      console.log('OTP Verified:', otp);
-      return { success: true, message: 'OTP verified successfully. You can now set a new password.' };
-    } else if (step === 3) {
-      // Step 3: Update the password
-      await axios.post('http://localhost:5000/api/auth/reset-password', { token: otp, password: newPassword });
-      console.log('Password Updated:', newPassword);
-      return { success: true, message: 'Password updated successfully!' };
-    }
-  } catch (error) {
-    console.error('Error:', error.response ? error.response.data : error.message);
-    
-    // Default error message
-    let errorMessage = 'An error occurred. Please try again.';
-
-    if (error.response) {
-      const { status, data } = error.response;
-      switch (status) {
-        case 400:
-          errorMessage = data.message || 'Bad request. Please check your input.';
-          break;
-        case 401:
-          errorMessage = data.message || 'Unauthorized. Please check your credentials.';
-          break;
-        case 404:
-          errorMessage = data.message || 'Resource not found.';
-          break;
-        case 500:
-          errorMessage = data.message || 'Internal server error. Please try again later.';
-          break;
-        default:
-          errorMessage = data.message || 'An unexpected error occurred.';
-      }
-    }
-    
-    return { success: false, message: errorMessage };
-  }
-};
-
 const PasswordReset = () => {
   const [step, setStep] = useState(1); // Step 1: Email, Step 2: OTP, Step 3: New Password
   const [email, setEmail] = useState("");
@@ -57,27 +9,50 @@ const PasswordReset = () => {
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Handle form submission for each step
+  const handlePasswordReset = async (step, email, otp, newPassword) => {
+    try {
+      setLoading(true);
+      let response;
+      switch (step) {
+        case 1:
+          response = await axios.post('http://localhost:5000/api/auth/forgot-password', { email });
+          break;
+        case 2:
+          response = await axios.post('http://localhost:5000/api/auth/verify-otp', { otp, email });
+          break;
+        case 3:
+          response = await axios.post('http://localhost:5000/api/auth/reset-password', { token: otp, newPassword });
+          break;
+        default:
+          throw new Error('Invalid step');
+      }
+
+      if (response.status === 200) {
+        return { success: true, message: response.data.message || 'Operation successful.' };
+      } else {
+        throw new Error(response.data.message || 'An error occurred.');
+      }
+    } catch (error) {
+      console.error('Error:', error.response ? error.response.data : error.message);
+      return { success: false, message: error.response ? error.response.data.message : error.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error message
-    setSuccessMessage(""); // Reset success message
+    setError("");
+    setSuccessMessage("");
 
     const result = await handlePasswordReset(step, email, otp, newPassword);
-    
     if (result.success) {
       setSuccessMessage(result.message);
-      if (step < 3) {
-        setStep(step + 1); // Move to next step
-      }
-      
-      if (step === 1) {
-        setEmail(""); // Clear email input
-      }
-      if (step === 2) {
-        setOtp(""); // Clear OTP input
-      }
+      if (step < 3) setStep(step + 1);
+      if (step === 1) setEmail("");
+      if (step === 2) setOtp("");
     } else {
       setError(result.message);
     }
@@ -124,15 +99,14 @@ const PasswordReset = () => {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 required
+                minLength="6"
               />
             </div>
           )}
           {error && <p className="error-message">{error}</p>}
           {successMessage && <p className="success-message">{successMessage}</p>}
-          <button type="submit" className="btn btn-primary">
-            {step === 1 && "Send Reset Link"}
-            {step === 2 && "Verify OTP"}
-            {step === 3 && "Update Password"}
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading ? "Processing..." : step === 1 ? "Send Reset Link" : step === 2 ? "Verify OTP" : "Update Password"}
           </button>
         </form>
       </div>
