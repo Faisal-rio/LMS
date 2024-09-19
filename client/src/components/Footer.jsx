@@ -28,13 +28,13 @@ const Footer = () => {
           <div className="address">
             <p>
               <FontAwesomeIcon icon={faMapMarkerAlt} /> Mada Center 8th floor,
-              379 Hudson St, New York, NY 10018 US
+              379 Vaniyanbadi,TamilNadu
             </p>
             <p>
               <FontAwesomeIcon icon={faPhone} /> +1 800 123 4567
             </p>
             <p>
-              <FontAwesomeIcon icon={faEnvelope} /> info@yourlms.com
+              <FontAwesomeIcon icon={faEnvelope} /> faisal.sfzubaida@yourlms.com
             </p>
           </div>
         </div>

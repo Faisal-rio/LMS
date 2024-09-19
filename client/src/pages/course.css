@@ -1,9 +1,21 @@
+/* CSS Variables */
+:root {
+  --primary-color: #4a154b;
+  --secondary-color: #7d3c98;
+  --text-color: #111111;
+  --background-color: #f4f7f9;
+  --modal-background: #fff;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --btn-radius: 50px;
+  --transition-speed: 0.3s;
+}
+
 /* General Layout */
 body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  background-color: #f4f7f9;
+  background-color: var(--background-color);
 }
 
 .container {
@@ -29,7 +41,7 @@ body {
   display: block;
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
 }
 
 .col-md-6 img.img-fluid:hover {
@@ -40,7 +52,7 @@ body {
 /* Text Content */
 .text-content {
   padding: 20px;
-  color: #111111;
+  color: var(--text-color);
   animation: fadeIn 1s ease-in-out;
 }
 
@@ -89,7 +101,7 @@ body {
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
 .card:hover {
@@ -115,7 +127,7 @@ body {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #761378;
+  color: var(--primary-color);
 }
 
 .card-text {
@@ -130,7 +142,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--modal-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,7 +150,7 @@ body {
 }
 
 .enroll-modal-content {
-  background: #fff;
+  background: var(--modal-background);
   padding: 30px;
   border-radius: 15px;
   width: 400px;
@@ -162,7 +174,7 @@ body {
 h2 {
   margin: 0;
   font-size: 1.5rem;
-  color: #4a154b;
+  color: var(--primary-color);
 }
 
 .form-group {
@@ -173,7 +185,7 @@ h2 {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 50px;
+  border-radius: var(--btn-radius);
 }
 
 .invalid-feedback {
@@ -187,47 +199,47 @@ h2 {
 }
 
 .modal-footer .btn-success {
-  background-color: #392139;
+  background-color: var(--primary-color);
   border: none;
   font-size: 1rem;
   font-weight: bold;
   padding: 10px 20px;
-  border-radius: 50px;
+  border-radius: var(--btn-radius);
 }
 
 .modal-footer .btn-success:hover {
-  background-color: #7d3c98;
+  background-color: var(--secondary-color);
 }
 
 /* Buttons */
 .btn-primary {
-  background-color: #4a154b;
+  background-color: var(--primary-color);
   border: none;
   font-size: 1rem;
   font-weight: bold;
   padding: 10px 20px;
-  border-radius: 50px;
-  transition: background-color 0.3s ease;
+  border-radius: var(--btn-radius);
+  transition: background-color var(--transition-speed) ease;
 }
 
 .btn-primary:hover {
-  background-color: #7d3c98;
+  background-color: var(--secondary-color);
 }
 
 .btn-enroll {
-  background-color: #4a154b;
+  background-color: var(--primary-color);
   border: none;
   font-size: 1rem;
   font-weight: bold;
   padding: 10px 20px;
-  border-radius: 50px;
+  border-radius: var(--btn-radius);
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
 .btn-enroll:hover {
-  background-color: #7d3c98;
+  background-color: var(--secondary-color);
   transform: scale(1.05);
 }
 

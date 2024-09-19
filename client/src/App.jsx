@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import axios from 'axios';
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -9,7 +8,6 @@ import Course from "./pages/Course";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import PasswordReset from "./pages/PasswordReset";
 
 const App = () => {
   return (
@@ -21,8 +19,6 @@ const App = () => {
         <Route path="/course" element={<PageWithFooter Component={Course} />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/password-reset" element={<PasswordReset />} />
-        <Route path="/forgot-password" element={<PasswordReset />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
@@ -39,4 +35,4 @@ const PageWithFooter = ({ Component }) => {
   );
 };
 
-export default App; 
+export default App;

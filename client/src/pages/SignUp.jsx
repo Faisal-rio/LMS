@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from 'axios'; // Import axios for API requests
-import "./SignUp.css"; // Import the CSS file
+import axios from 'axios'; 
+import { useNavigate } from 'react-router-dom'; 
+import "./SignUp.css"; 
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -9,10 +10,12 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const navigate = useNavigate(); 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
-    setSuccess(""); // Clear previous success messages
+    setError(""); 
+    setSuccess(""); 
 
     if (name && email && password) {
       try {
@@ -23,17 +26,20 @@ const SignUp = () => {
         });
 
         if (response.status === 201) {
-          setSuccess('Signup successful! You can now log in.'); // Success message
+          setSuccess('Signup successful! You can now log in.'); 
+          setTimeout(() => {
+            navigate('/login'); 
+          }, 2000); 
         }
       } catch (error) {
         if (error.response) {
-          setError(error.response.data.message); // Error message from backend
+          setError(error.response.data.message || 'Error signing up'); 
         } else {
-          setError('Error signing up');
+          setError('Error signing up'); 
         }
       }
     } else {
-      setError('Please fill out all fields.'); // Show an error if fields are empty
+      setError('Please fill out all fields.'); 
     }
   };
 
