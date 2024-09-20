@@ -98,7 +98,7 @@ git clone <https://github.com/Faisal-rio/LMS>
 
 ## npm install
 
-## just click the[Netlify](https://www.netlify.com/).
+## just click the[Netlify](https://unlucky-lms-project-rio-main.netlify.app/).
 
 ## backend code 
 
