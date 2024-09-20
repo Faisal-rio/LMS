@@ -92,9 +92,7 @@ const Login = () => {
             Log In
           </button>
         </form>
-        <div className="mt-3">
-          <Link to="/forgot-password">Forgot Password?</Link>
-        </div>
+        
         <div className="mt-3">
           <p>
             New on our platform? <Link to="/signup">Create an account</Link>

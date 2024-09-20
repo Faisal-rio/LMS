@@ -1,122 +1,91 @@
+/* Navbar Styles */
 .navbar {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  font-family: "Arial", Helvetica, sans-serif;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1.2rem; /* Reduced padding for smaller height */
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.4s ease;
+}
+
+.navbar:hover {
+  background-color: #f8f9fa;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  font-size: 1.75rem;
+  font-size: 1.85rem; /* Slightly reduced font size */
   font-weight: bold;
-  color: #1d3557;
-  text-transform: uppercase;
+  color: #007bff;
   letter-spacing: 1px;
+  text-transform: capitalize;
   transition: color 0.3s, transform 0.3s;
 }
 
 .navbar-logo {
-  height: 50px;
-  width: auto;
-  margin-right: 10px;
+  margin-right: 10px; /* Reduced space between logo and brand */
+  height: 40px; /* Reduced logo height */
 }
 
 .navbar-brand:hover {
-  color: #007bff;
-  transform: scale(1.05);
+  color: #0056b3;
+  transform: scale(1.08);
 }
 
-.navbar-brand .ms-2 {
-  font-size: 1.9rem;
-  font-weight: bold;
-  color: #1d3557;
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-nav {
+  flex-direction: row;
+  margin-left: auto; /* Align the navbar items to the right */
+}
+
+.nav-item {
+  margin-right: 20px;
 }
 
 .nav-link {
-  margin-right: 20px;
-  transition: color 0.3s, transform 0.3s;
+  color: #0d0d0d;
+  font-size: 1.1rem; /* Slightly reduced font size */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.4s, transform 0.3s;
 }
 
 .nav-link:hover {
-  color: #218838;
-  transform: scale(1.1);
+  color: #007bff;
+  transform: scale(1.08);
 }
 
-.sign-up-btn {
-  background-color: #218838;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  text-decoration: none;
-}
 
-.sign-up-btn:hover {
-  background-color: #1e7e34;
-  color: white;
-}
-
-/* Responsive Design Adjustments */
+/* Responsive Design */
 @media (max-width: 992px) {
   .navbar-brand {
-    font-size: 1.5rem;
-  }
-
-  .navbar-logo {
-    height: 40px;
-  }
-
-  .navbar-nav {
-    margin-top: 10px;
-  }
-
-  .nav-link {
-    margin-right: 15px;
-  }
-
-  .sign-up-btn {
-    padding: 8px 16px;
+    font-size: 1.6rem;
   }
 }
 
 @media (max-width: 768px) {
   .navbar-brand {
-    font-size: 1.25rem;
-  }
-
-  .navbar-logo {
-    height: 35px;
-  }
-
-  .nav-link {
-    margin-right: 10px;
-  }
-
-  .sign-up-btn {
-    padding: 6px 12px;
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 576px) {
   .navbar-brand {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
-
-  .navbar-logo {
-    height: 30px;
-  }
-
   .navbar-nav {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
   }
-
   .nav-link {
     display: block;
-    margin: 5px 0;
+    margin: 8px 0;
   }
-
   .sign-up-btn {
     width: 100%;
-    padding: 10px 0;
+    padding: 12px 0;
   }
 }

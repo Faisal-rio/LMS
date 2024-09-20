@@ -8,6 +8,7 @@ import Course from "./pages/Course";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Blog from "./pages/Blog";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/Blog" element={<PageWithFooter Component={Blog} />} />
       </Routes>
     </Router>
   );

@@ -640,10 +640,10 @@
   }
 
   .testimonials {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for testimonials */
+    grid-template-columns: repeat(2, 1fr); 
   }
 
   .trusted-partners-grid {
-    flex-wrap: wrap; /* Allow wrapping of logos */
+    flex-wrap: wrap; 
   }
 }
