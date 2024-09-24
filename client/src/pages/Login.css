@@ -25,7 +25,7 @@
   padding: 20px;
   color: #ffffff;
   text-align: center;
-  margin-left: 150px;
+  margin-left: 150px; /* Adjusted for better spacing */
   transform: translateX(-100%);
   animation: slideIn 1s forwards;
 }
@@ -60,7 +60,7 @@
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  margin-left: 100px;
+  margin-left: 100px; /* Adjusted for better spacing */
   opacity: 0;
   animation: fadeIn 1s forwards;
 }

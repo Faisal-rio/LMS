@@ -1,35 +1,66 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link for navigation
-import './Login.css'; // Import the CSS file
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import API from "../utils/api";
+import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Clear inputs initially
+    setPassword(""); // Always clear password
+
+    // Check for stored email
+    const savedEmail = localStorage.getItem("email");
+    if (savedEmail) {
+      setEmail(savedEmail);
+      setRememberMe(true); // Set rememberMe based on stored email
+    }
+
+    // Check if user is already logged in
+    const token = localStorage.getItem("token");
+    if (token && validateToken(token)) {
+      navigate("/"); // Redirect to home if token is valid
+    }
+  }, [navigate]);
+
+  const validateToken = (token) => {
+    // Placeholder: Implement actual token validation logic
+    return true; // Assuming token is valid for demonstration
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(''); // Clear previous messages
+    setMessage(""); // Clear any previous message
 
     try {
-      const response = await axios.post('https://lms-last-backend.onrender.com/api/auth/login', {
-        email,
-        password
-      });
+      const response = await API.post("/auth/login", { email, password });
 
       if (response.status === 200) {
-        // Handle successful login, e.g., store the JWT in localStorage
-        localStorage.setItem('token', response.data.token);
-        setMessage('Login successful!');
-        // Redirect to a different page or update UI
-        // You can use `history.push` or `navigate` from react-router-dom if needed
+        localStorage.setItem("token", response.data.token); // Save the token
+
+        if (rememberMe) {
+          localStorage.setItem("email", email); // Save email if rememberMe is checked
+        } else {
+          localStorage.removeItem("email"); // Remove email if rememberMe is unchecked
+        }
+
+        setMessage("Login successful!");
+
+        // Redirect to home page after 2 seconds
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       }
     } catch (error) {
-      if (error.response) {
-        setMessage(error.response.data.message); // Error message from backend
+      if (error.response && error.response.data) {
+        setMessage(error.response.data.message);
       } else {
-        setMessage('Error logging in');
+        setMessage("Error logging in");
       }
     }
   };
@@ -83,6 +114,8 @@ const Login = () => {
               type="checkbox"
               className="form-check-input"
               id="rememberMe"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
             />
             <label className="form-check-label" htmlFor="rememberMe">
               Remember Me
@@ -92,7 +125,7 @@ const Login = () => {
             Log In
           </button>
         </form>
-        
+
         <div className="mt-3">
           <p>
             New on our platform? <Link to="/signup">Create an account</Link>

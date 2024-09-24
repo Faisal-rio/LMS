@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -9,6 +9,7 @@ import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Blog from "./pages/Blog";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -17,11 +18,38 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<PageWithFooter Component={Home} />} />
-        <Route path="/course" element={<PageWithFooter Component={Course} />} />
-        <Route path="/contactus" element={<ContactUs />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/Blog" element={<PageWithFooter Component={Blog} />} />
+
+        {/* Protecting and adding Footer to the Course route */}
+        <Route
+          path="/course"
+          element={
+            <ProtectedRoute>
+              <PageWithFooter Component={Course} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/contactus"
+          element={
+            <ProtectedRoute>
+              <ContactUs />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Protecting and adding Footer to the Blog route */}
+        <Route
+          path="/blog"
+          element={
+            <ProtectedRoute>
+              <PageWithFooter Component={Blog} />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

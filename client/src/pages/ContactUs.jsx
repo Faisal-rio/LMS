@@ -5,58 +5,68 @@ import {
   faEnvelope,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import "./ContactUs.css"; // Ensure this file exists and is correctly styled
+import axios from "axios";
+import "./ContactUs.css";
 
 const ContactUs = () => {
-  const [phone, setPhone] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [formStatus, setFormStatus] = useState("");
 
   useEffect(() => {
-    // Add a class to the body when this component mounts
     document.body.classList.add("contact-page");
 
-    // Clean up the class when this component unmounts
     return () => {
       document.body.classList.remove("contact-page");
     };
   }, []);
 
-  // Handle phone number changes
-  const handlePhoneChange = (e) => {
-    const value = e.target.value;
-    // Only set state if the input is a number or empty and within length limit
-    if (/^\d*$/.test(value) && value.length <= 10) {
-      setPhone(value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "phone" && /^\d*$/.test(value) && value.length <= 10) {
+      setFormData({ ...formData, [name]: value });
+    } else if (name !== "phone") {
+      setFormData({ ...formData, [name]: value });
     }
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormStatus(""); // Reset status before submitting
 
-    // Example form data you would send to backend
-    const formData = {
-      firstName,
-      lastName,
-      email,
-      phone,
-      message,
-    };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/contact",
+        formData
+      );
+      console.log("Response:", response.data);
+      setFormStatus("success");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
 
-    console.log("Form Submitted:", formData);
-    // Perform an API request or another action with the form data
+      // Hide message after 2 seconds
+      setTimeout(() => {
+        setFormStatus("");
+      }, 2000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setFormStatus("error");
 
-    // After submission, clear the form and set the submission state
-    setFormSubmitted(true);
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPhone("");
-    setMessage("");
+      // Hide error message after 2 seconds
+      setTimeout(() => {
+        setFormStatus("");
+      }, 2000);
+    }
   };
 
   return (
@@ -77,7 +87,6 @@ const ContactUs = () => {
         <div className="contact-info support-info">
           <FontAwesomeIcon icon={faEnvelope} className="contact-icon" />
           <h4>General Support</h4>
-          {/* Update the email link to use the 'mailto:' protocol */}
           <p>
             <a href="mailto:faisal.sfzubaida@gmail.com?subject=Support Request&body=Hello, I have a question about...">
               contact@gmail.com
@@ -88,51 +97,62 @@ const ContactUs = () => {
 
       <div className="contact-form">
         <h2>Send Us A Message</h2>
-        {formSubmitted && (
+        {formStatus === "success" && (
           <p className="success-message">
             Thank you! Your message has been sent.
           </p>
         )}
+        {formStatus === "error" && (
+          <p className="error-message">
+            Oops! Something went wrong. Please try again.
+          </p>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
               type="text"
+              name="firstName"
               placeholder="First name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={formData.firstName}
+              onChange={handleChange}
               required
             />
             <input
               type="text"
+              name="lastName"
               placeholder="Last name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              value={formData.lastName}
+              onChange={handleChange}
               required
             />
           </div>
           <div className="form-group">
             <input
               type="email"
+              name="email"
               placeholder="Eg. example@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
           <div className="form-group">
             <input
               type="tel"
+              name="phone"
               placeholder="Eg. +1 800 000000"
-              value={phone}
-              onChange={handlePhoneChange}
+              value={formData.phone}
+              onChange={handleChange}
               required
             />
           </div>
           <div className="form-group">
             <textarea
+              name="message"
               placeholder="Write us a message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              value={formData.message}
+              onChange={handleChange}
               required
             ></textarea>
           </div>

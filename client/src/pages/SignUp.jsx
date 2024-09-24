@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from 'axios'; 
-import { useNavigate } from 'react-router-dom'; 
-import "./SignUp.css"; 
+import { useNavigate } from "react-router-dom";
+import API from "../utils/api"; // Import the API setup
+import "./SignUp.css"; // Import the CSS file
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -10,36 +10,37 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // For navigation
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); 
-    setSuccess(""); 
+    setError(""); // Clear error messages
+    setSuccess(""); // Clear success messages
 
     if (name && email && password) {
       try {
-        const response = await axios.post('https://lms-last-backend.onrender.com/api/auth/signup', {
+        // Use API.post instead of axios.post
+        const response = await API.post("/auth/signup", {
           name,
           email,
-          password
+          password,
         });
 
         if (response.status === 201) {
-          setSuccess('Signup successful! You can now log in.'); 
+          setSuccess("Signup successful! You can now log in.");
           setTimeout(() => {
-            navigate('/login'); 
-          }, 2000); 
+            navigate("/login"); // Redirect to login after signup
+          }, 2000);
         }
       } catch (error) {
         if (error.response) {
-          setError(error.response.data.message || 'Error signing up'); 
+          setError(error.response.data.message || "Error signing up");
         } else {
-          setError('Error signing up'); 
+          setError("Error signing up");
         }
       }
     } else {
-      setError('Please fill out all fields.'); 
+      setError("Please fill out all fields.");
     }
   };
 
@@ -50,10 +51,14 @@ const SignUp = () => {
         <p className="institute-name">Get Codified with our New Features!</p>
         <div className="additional-content">
           <p>
-            Welcome to HappyLearning, where innovation meets education. Explore our latest features and join a community of learners dedicated to achieving excellence.
+            Welcome to HappyLearning, where innovation meets education. Explore
+            our latest features and join a community of learners dedicated to
+            achieving excellence.
           </p>
           <p>
-            Discover new courses, track your progress, and enjoy personalized learning experiences tailored to your needs. Let us help you achieve your career goals!
+            Discover new courses, track your progress, and enjoy personalized
+            learning experiences tailored to your needs. Let us help you achieve
+            your career goals!
           </p>
         </div>
       </div>
@@ -100,11 +105,15 @@ const SignUp = () => {
           {error && <p className="error-text">{error}</p>}
           {success && <p className="success-text">{success}</p>}
 
-          <button type="submit" className="btn btn-primary">Sign Up</button>
+          <button type="submit" className="btn btn-primary">
+            Sign Up
+          </button>
         </form>
 
         <div className="mt-3">
-          <p>Already have an account? <a href="/login">Log In</a></p>
+          <p>
+            Already have an account? <a href="/login">Log In</a>
+          </p>
         </div>
       </div>
     </div>
