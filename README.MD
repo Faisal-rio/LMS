@@ -1,6 +1,6 @@
 # HappyLearning 🌟
 
-Welcome to **HappyLearning**, your go-to platform for online education and coding tutorials! 🚀
+Welcome to **HappyLearning**, your go-to platform for online education ! 🚀
 
 ## Table of Contents 📚
 
@@ -30,6 +30,12 @@ Welcome to **HappyLearning**, your go-to platform for online education and codin
 
 ## Features 🎉
 
+- User authentication (login/signup)
+- Protected routes for authenticated users
+- Integration with MongoDB using Mongoose
+- API routes for user enrollment and contact forms
+- Responsive design for an engaging user experience
+
 - **User Authentication**: Secure login and signup functionality. 🔒
 - **Responsive Design**: Mobile-friendly UI for all devices. 📱💻
 - **Course Management**: Enroll in and manage your courses with ease. 🎓
@@ -46,18 +52,39 @@ Welcome to **HappyLearning**, your go-to platform for online education and codin
 ## Technologies Used
 
 ## Frontend: React, React Router, Bootstrap
+
 ## Backend: Node.js, Express
+
 ## Database: MongoDB
+
 ## Styling: CSS
+
 ## Features
+
 ## User authentication (Sign up, Log in)
+
 ## Course browsing and enrollment
+
 ## Blog section for updates and tutorials
+
 ## Responsive design for mobile and desktop
+
 ## Carousel header showcasing features and courses
+
 ## User-friendly navigation with a modern navbar
+
 ## Footer with contact information and social media links
+
 ## Installation
+
+### Backend (Express.js)
+
+- **Node.js**: Server-side runtime environment
+- **Express**: Fast and lightweight web framework for Node.js
+- **Mongoose**: ODM for MongoDB, to manage database interactions
+- **MongoDB**: NoSQL database for storing user information, enrollments, etc.
+- **dotenv**: For environment variable management
+- **Cors**: Middleware for handling Cross-Origin Resource Sharing (CORS)
 
 ### Usage
 
@@ -71,15 +98,18 @@ Explore the blog for learning resources and updates.
 Contributions are welcome! Please follow these steps:
 
 ## Fork the repository.
+
 ## Create a new branch (git checkout -b feature-branch).
+
 ## Make your changes and commit (git commit -m 'Add new feature').
+
 ## Push to the branch (git push origin feature-branch).
+
 ## Create a new Pull Request.
 
 ## License 📜
 
 This project is licensed under the MIT License. See the LICENSE file for more information.
-
 
 ## Acknowledgements
 
@@ -98,12 +128,11 @@ git clone <https://github.com/Faisal-rio/LMS>
 
 ## npm install
 
-## just click the[Netlify](https://unlucky-lms-project-rio-main.netlify.app/).
+## just click the[Netlify](https://unlucky-happylearning-simple.netlify.app/).
 
-## backend code 
+## backend code
 
 git clone <https://github.com/Faisal-rio/LMS.Last-backend>
-
 
 ## Conclusion 🎉
 
