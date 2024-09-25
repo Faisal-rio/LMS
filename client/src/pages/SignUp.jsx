@@ -19,11 +19,15 @@ const SignUp = () => {
 
     if (name && email && password) {
       try {
-        // Use API.post instead of axios.post
         const response = await API.post("/auth/signup", {
           name,
           email,
           password,
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': navigator.userAgent // Add User-Agent header for mobile handling
+          }
         });
 
         if (response.status === 201) {

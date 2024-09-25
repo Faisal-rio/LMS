@@ -11,17 +11,14 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Clear inputs initially
     setPassword(""); // Always clear password
 
-    // Check for stored email
     const savedEmail = localStorage.getItem("email");
     if (savedEmail) {
       setEmail(savedEmail);
       setRememberMe(true); // Set rememberMe based on stored email
     }
 
-    // Check if user is already logged in
     const token = localStorage.getItem("token");
     if (token && validateToken(token)) {
       navigate("/"); // Redirect to home if token is valid
@@ -38,7 +35,12 @@ const Login = () => {
     setMessage(""); // Clear any previous message
 
     try {
-      const response = await API.post("/auth/login", { email, password });
+      const response = await API.post("/auth/login", { email, password }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': navigator.userAgent // Add User-Agent header for mobile handling
+        }
+      });
 
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token); // Save the token
