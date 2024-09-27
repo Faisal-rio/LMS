@@ -4,8 +4,7 @@ import react from '@vitejs/plugin-react';
 // Combined Vite configuration
 export default defineConfig({
   plugins: [react()], // Include the React plugin
-
-  // Additional configurations
+  
   resolve: {
     alias: {
       // Add your path aliases if needed
@@ -13,6 +12,7 @@ export default defineConfig({
   },
   
   build: {
+    outDir: 'dist', // Ensure the output directory matches the Netlify settings
     rollupOptions: {
       onwarn(warning, warn) {
         // Display all Rollup warnings
