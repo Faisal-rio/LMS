@@ -1,7 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
+// Combined Vite configuration
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [react()], // Include the React plugin
+
+  // Additional configurations
+  resolve: {
+    alias: {
+      // Add your path aliases if needed
+    },
+  },
+  
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // Display all Rollup warnings
+        console.warn(warning.message);
+      },
+    },
+  },
+});
