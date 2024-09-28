@@ -34,7 +34,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faPhone} /> +1 800 123 4567
             </p>
             <p>
-              <FontAwesomeIcon icon={faEnvelope} /> faisal.sfzubaida@yourlms.com
+              <FontAwesomeIcon icon={faEnvelope} /> faisal.sfzubaida@gmail.com
             </p>
           </div>
         </div>
