@@ -1,8 +1,15 @@
+# netlify.toml
+
 [build]
-  command = "npm run build"
-  publish = "dist" 
+  base = "client"  # Path to your client directory
+  command = "npm install && npm run build"  
+  publish = "client/build"  
+
+[build.environment]
+  NODE_VERSION = "20.11.0"  
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
