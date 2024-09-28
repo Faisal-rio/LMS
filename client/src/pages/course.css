@@ -119,7 +119,7 @@ body {
 
 .card-body {
   padding: 20px;
-  background: #ffffff;
+  background: var(--modal-background); /* Use variable for consistency */
   text-align: center;
 }
 
