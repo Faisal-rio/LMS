@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "/src/pages/Course.css"; // Import your CSS file
+import "./Course.css"; // Import your CSS file
 
 // Debounce utility function
 const debounce = (func, wait) => {
