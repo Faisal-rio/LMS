@@ -1,4 +1,3 @@
-// App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -10,7 +9,6 @@ import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Blog from "./pages/Blog";
-import Carousel from "./components/Carousel"; // Import the Carousel component
 
 const App = () => {
   return (
@@ -19,9 +17,10 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<PageWithFooter Component={Home} />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        
+
         {/* Adding Footer to the Course route */}
         <Route
           path="/course"
@@ -44,8 +43,6 @@ const App = () => {
 const PageWithFooter = ({ Component }) => {
   return (
     <>
-      {/* Include Carousel only on Home page */}
-      {Component === Home && <Carousel />}
       <Component />
       <Footer />
     </>

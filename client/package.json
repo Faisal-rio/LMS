@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rimraf dist && mv build dist",
     "serve": "vite preview",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -47,6 +47,7 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "react-scripts": "^5.0.1",
+    "rimraf": "^6.0.1",
     "rollup": "^4.22.5",
     "vite": "^5.4.1",
     "webpack": "^5.95.0"
