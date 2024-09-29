@@ -122,7 +122,7 @@ Bootstrap
 
 Clone the repository:
 
-git clone <https://github.com/Faisal-rio/LMS>
+ Frontend git clone <https://github.com/Faisal-rio/LMS>
 
 ## cd client
 
@@ -134,6 +134,9 @@ git clone <https://github.com/Faisal-rio/LMS>
 
 git clone <https://github.com/Faisal-rio/LMS.Last-backend>
 
-## Conclusion 🎉
+## just click the[Render](https://lms-last-backend.onrender.com/).
 
-Thank you for exploring HappyLearning! We hope this LMS helps you achieve your educational goals and enhances your learning experience. Feel free to contribute, report issues, or suggest features to make it even better! Let's learn together! 🌱
+## Conclusion 🎉
+Welcome to HappyLearning! 🎉 This is my first MERN stack project, a simple Learning Management System (LMS) utilizing a local database. You can easily copy the code from GitHub, run it, and see how it works. Once the backend server is running, the login and signup features function seamlessly, and data is stored in the database. Feel free to make any changes and let your creativity shine!
+
+Thank you for exploring HappyLearning! We hope this LMS supports you in achieving your educational goals and enriches your learning journey. We encourage you to contribute, report any issues, or suggest features to enhance this project even further. Let's learn together! 🌱
