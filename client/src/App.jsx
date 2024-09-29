@@ -9,6 +9,7 @@ import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Blog from "./pages/Blog";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -21,18 +22,33 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
 
-        {/* Adding Footer to the Course route */}
+        {/* Protecting and adding Footer to the Course route */}
         <Route
           path="/course"
-          element={<PageWithFooter Component={Course} />}
+          element={
+            <ProtectedRoute>
+              <PageWithFooter Component={Course} />
+            </ProtectedRoute>
+          }
         />
 
-        <Route path="/contactus" element={<ContactUs />} />
+        <Route
+          path="/contactus"
+          element={
+            <ProtectedRoute>
+              <ContactUs />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* Adding Footer to the Blog route */}
+        {/* Protecting and adding Footer to the Blog route */}
         <Route
           path="/blog"
-          element={<PageWithFooter Component={Blog} />}
+          element={
+            <ProtectedRoute>
+              <PageWithFooter Component={Blog} />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </Router>
