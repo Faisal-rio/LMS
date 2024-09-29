@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "react-scripts build && rimraf dist && mv build dist",
+    "build": "react-scripts build",
     "serve": "vite preview",
     "lint": "eslint .",
     "preview": "vite preview",
